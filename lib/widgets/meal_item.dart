@@ -61,7 +61,7 @@ class MealItem extends StatelessWidget {
       onTap: () => selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(8)
         ),
         elevation: 4,
         margin: EdgeInsets.all(10),
@@ -71,8 +71,8 @@ class MealItem extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
                   ),
                   child: Image.network(
                     imageUrl,
