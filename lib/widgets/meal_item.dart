@@ -35,32 +35,30 @@ class MealItem extends StatelessWidget {
   }
 
   String get affordabilityText {
-    switch (affordability){
+    switch (affordability) {
       case Affordability.Affordable:
-      return 'Affordable';
-      break;
+        return 'Affordable';
+        break;
       case Affordability.Pricey:
-      return 'Pricey';
-      break;
+        return 'Pricey';
+        break;
       case Affordability.Luxurious:
-      return 'Expensive';
+        return 'Expensive';
       default:
-      return 'Unkown';
+        return 'Unkown';
     }
   }
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(
-      MealDetailScreen.routeName, arguments: {
-        'id': id,
-      }
-    );
+    Navigator.of(context).pushNamed(MealDetailScreen.routeName, arguments: {
+      'id': id,
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=> selectMeal(context),
+      onTap: () => selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -132,7 +130,8 @@ class MealItem extends StatelessWidget {
                       ),
                       Text(ComplexityText),
                     ],
-                  ),Row(
+                  ),
+                  Row(
                     children: [
                       Icon(
                         Icons.attach_money,
