@@ -4,8 +4,6 @@ import '../dummy_data.dart';
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
 
-  
-
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -31,12 +29,40 @@ class MealDetailScreen extends StatelessWidget {
     );
   }
 
+  Widget buildWidgetCard(String e, BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+
+        color: Theme.of(context).canvasColor,
+
+      ),
+      margin: EdgeInsets.symmetric(
+        vertical: 2,
+        horizontal: 32,
+      ),
+      height: 32,
+      width: double.infinity,
+      child: Text(e),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final mealId = ModalRoute.of(context).settings.arguments as Map<String, String>;
+    final mealId =
+        ModalRoute.of(context).settings.arguments as Map<String, String>;
     print(mealId);
     final selectedMeal =
         DUMMY_MEALS.firstWhere((meal) => meal.id == mealId['id']);
+
+    List<Widget> _ingredientsWidget = selectedMeal.ingredients.map((e) {
+      return buildWidgetCard("- ${e}", context);
+    }).toList();
+
+    List<Widget> _stepsWidget = selectedMeal.steps.map((e) {
+      int index = selectedMeal.steps.indexOf(e);
+
+      return buildWidgetCard("${index+1} - ${e}", context);
+    }).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -53,7 +79,31 @@ class MealDetailScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            buildSectionTitle(context, 'Ingredients'),
+            SizedBox(height: 16,),
+            ExpansionTile(
+              title: Text("Ingredients"),
+              children: _ingredientsWidget,
+            ),
+            ExpansionTile(
+              title: Text("Steps"),
+              children: _stepsWidget,
+            )
+            /*
+            * Card(
+                  color: Theme.of(context).canvasColor,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 10,
+                    ),
+                    child: Text(selectedMeal.ingredients[index]),
+                  ),
+                ),
+            *
+            *
+            * */
+
+            /*buildSectionTitle(context, 'Ingredients'),
             buildContainer(
               ListView.builder(
                 itemBuilder: (ctx, index) => Card(
@@ -85,7 +135,7 @@ class MealDetailScreen extends StatelessWidget {
                 ]),
                 itemCount: selectedMeal.steps.length,
               ),
-            ),
+            ),*/
           ],
         ),
       ),
