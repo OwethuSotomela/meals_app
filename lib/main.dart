@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/screens/category_meals_screen.dart';
-import 'package:flutter_complete_guide/screens/meal_detail_screen.dart';
-// import 'package:flutter_complete_guide/screens/meal_detail_screen.dart';
-import 'package:flutter_complete_guide/screens/tabs_screen.dart';
+import './screens/category_meals_screen.dart';
+import './screens/filters_screen.dart';
+import './screens/meal_detail_screen.dart';
+// import './screens/meal_detail_screen.dart';
+import './screens/tabs_screen.dart';
 import 'screens/categories_screen.dart';
 
 void main() => runApp(MyApp());
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         '/': (ctx) => TabsScreen(),
         CategoryMealsScreens.routeName: (cxt) => CategoryMealsScreens(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(),
       },
       // ignore: missing_return
       onGenerateRoute: (settings){
