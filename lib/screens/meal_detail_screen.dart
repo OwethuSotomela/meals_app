@@ -32,9 +32,7 @@ class MealDetailScreen extends StatelessWidget {
   Widget buildWidgetCard(String e, BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-
         color: Theme.of(context).canvasColor,
-
       ),
       margin: EdgeInsets.symmetric(
         vertical: 2,
@@ -61,7 +59,7 @@ class MealDetailScreen extends StatelessWidget {
     List<Widget> _stepsWidget = selectedMeal.steps.map((e) {
       int index = selectedMeal.steps.indexOf(e);
 
-      return buildWidgetCard("${index+1} - ${e}", context);
+      return buildWidgetCard("${index + 1} - ${e}", context);
     }).toList();
 
     return Scaffold(
@@ -79,7 +77,9 @@ class MealDetailScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
             ExpansionTile(
               title: Text("Ingredients"),
               children: _ingredientsWidget,
@@ -139,6 +139,13 @@ class MealDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(
+            Icons.delete,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop(mealId);
+          }),
     );
   }
 }
